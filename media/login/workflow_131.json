@@ -1,0 +1,16 @@
+{
+    "workflow_id": "workflow_131",
+    "result": {
+        "ip": "35.235.240.0",
+        "city": "Fremont",
+        "region": "California",
+        "country": "US",
+        "loc": "37.5483,-121.9886",
+        "org": "AS15169 Google LLC",
+        "postal": "94536",
+        "timezone": "America/Los_Angeles",
+        "username": "massihadjloum"
+    },
+    "note": "User from anoher city, region or country",
+    "anomaly": true
+}

@@ -1,0 +1,70 @@
+{
+    "timestamp": "2022-06-28T14:29:29.462+0000",
+    "rule": {
+        "level": 5,
+        "description": "File added to the system.",
+        "id": "554",
+        "firedtimes": 200,
+        "mail": false,
+        "groups": [
+            "ossec",
+            "syscheck",
+            "syscheck_entry_added",
+            "syscheck_file"
+        ],
+        "pci_dss": [
+            "11.5"
+        ],
+        "gpg13": [
+            "4.11"
+        ],
+        "gdpr": [
+            "II_5.1.f"
+        ],
+        "hipaa": [
+            "164.312.c.1",
+            "164.312.c.2"
+        ],
+        "nist_800_53": [
+            "SI.7"
+        ],
+        "tsc": [
+            "PI1.4",
+            "PI1.5",
+            "CC6.1",
+            "CC6.8",
+            "CC7.2",
+            "CC7.3"
+        ]
+    },
+    "agent": {
+        "id": "001",
+        "name": "ubuntu",
+        "ip": "10.128.0.4"
+    },
+    "manager": {
+        "name": "ubuntu-server-22"
+    },
+    "id": "1656426569.8911483",
+    "full_log": "File '/home/ransomware/test/Directory_09/File_19.txt' added\nMode: realtime\n",
+    "syscheck": {
+        "path": "/home/ransomware/test/Directory_09/File_19.txt",
+        "mode": "realtime",
+        "size_after": "1024",
+        "perm_after": "rw-r--r--",
+        "uid_after": "0",
+        "gid_after": "0",
+        "md5_after": "6ffc412eeab9c7dfe4209a9b79e3e0ff",
+        "sha1_after": "b57923acc04e8a478accf7495e0e09a5546616a8",
+        "sha256_after": "bc7863657732d910e343de9a4b0d84b626615587c7159d18651223c5015b076c",
+        "uname_after": "root",
+        "gname_after": "root",
+        "mtime_after": "2022-06-28T14:29:26",
+        "inode_after": 516308,
+        "event": "added"
+    },
+    "decoder": {
+        "name": "syscheck_new_entry"
+    },
+    "location": "syscheck"
+}

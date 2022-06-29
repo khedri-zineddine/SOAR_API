@@ -1,0 +1,10 @@
+{
+    "workflow_id": "workflow_96",
+    "result": {
+        "ip": "192.168.44.130",
+        "bogon": true,
+        "username": "zino"
+    },
+    "note": "User from anoher city, region or country",
+    "anomaly": true
+}

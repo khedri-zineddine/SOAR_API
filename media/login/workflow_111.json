@@ -1,0 +1,9 @@
+{
+    "workflow_id": "workflow_111",
+    "result": {
+        "username": "massihadjloum",
+        "ip": "154.121.27.68"
+    },
+    "note": "The user was already logged in before from the city, region or country",
+    "anomaly": false
+}

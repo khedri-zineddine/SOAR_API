@@ -1,0 +1,10 @@
+flask
+flask_classful
+request
+cortexutils
+requests
+future
+virustotal-api
+python-magic
+filetype
+flask-sock

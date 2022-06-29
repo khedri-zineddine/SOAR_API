@@ -1,0 +1,10 @@
+<script>
+    const evtSource = new EventSource("http://localhost:5000/anomalies/listen" );
+    evtSource.addEventListener("message", function(event) {
+        console.log(event.data)
+        const time = JSON.parse(event.data)
+    });
+    evtSource.onmessage = function(event) {
+        console.log("message: " + event.data);
+    }
+</script>

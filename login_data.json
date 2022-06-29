@@ -1,0 +1,29 @@
+{   
+    "timestamp": "2022-05-20T09:00:10.063+0000", 
+    "rule": {
+        "level": 3, 
+        "description": "sshd: authentication success.", 
+        "id": "5715", 
+        "mitre": {
+            "id": ["T1078", "T1021"], 
+            "tactic": ["Defense Evasion", "Persistence", "Privilege Escalation", "Initial Access", "Lateral Movement"], 
+            "technique": ["Valid Accounts", "Remote Services"]
+        }, 
+        "firedtimes": 1, 
+        "mail": false, 
+        "groups": ["syslog", "sshd", "authentication_success"], 
+        "gdpr": ["IV_32.2"], 
+        "gpg13": ["7.1", "7.2"], 
+        "hipaa": ["164.312.b"], 
+        "nist_800_53": ["AU.14", "AC.7"], 
+        "pci_dss": ["10.2.5"], 
+        "tsc": ["CC6.8", "CC7.2", "CC7.3"]
+    }, 
+    "agent": {"id": "001", "name": "ubuntu", "ip": "192.168.44.128"}, 
+    "manager": {"name": "zino"}, "id": "1653037210.20691", 
+    "full_log": "May 20 02:00:09 ubuntu sshd[4434]: Accepted password for zino from 192.168.44.130 port 57268 ssh2", 
+    "predecoder": {"program_name": "sshd", "timestamp": "May 20 02:00:09", "hostname": "ubuntu"}, 
+    "decoder": {"parent": "sshd", "name": "sshd"}, 
+    "data": {"srcip": "192.168.44.130", "srcport": "57268", "dstuser": "zino"}, 
+    "location": "/var/log/auth.log"
+}

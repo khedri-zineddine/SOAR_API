@@ -1,0 +1,23 @@
+{
+  "name": "IPinfo_Details",
+  "version": "1.0",
+  "author": "Manabu Niseki",
+  "url": "https://github.com/ninoseki/ipinfo-analyzers",
+  "license": "MIT",
+  "description": "IPinfo details lookup.",
+  "dataTypeList": ["ip"],
+  "dataType":"ip",
+  "command": "IPinfo/ipinfo_analyzer.py",
+  "baseConfig": "IPinfo",
+  "config": {
+    "service": "details",
+    "api_key":"97add942d750c4"
+  },
+  "configurationItems": [{
+    "name": "api_key",
+    "description": "Define the API key to use to connect the service",
+    "type": "string",
+    "multi": false,
+    "required": true
+  }]
+}

@@ -1,0 +1,22 @@
+{
+    "workflow_id": "workflow_173",
+    "result": {
+        "ip": "154.121.81.31",
+        "city": "Algiers",
+        "region": "Algiers",
+        "country": "DZ",
+        "loc": "36.7323,3.0875",
+        "org": "AS327712 Telecom Algeria",
+        "postal": "16006",
+        "timezone": "Africa/Algiers",
+        "username": "massihadjloum"
+    },
+    "note": "User from anoher city, region or country",
+    "anomaly": true,
+    "time": "2022-06-27T17:07:37.234+0000",
+    "agent": {
+        "id": "001",
+        "name": "ubuntu",
+        "ip": "10.128.0.4"
+    }
+}

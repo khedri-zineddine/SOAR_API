@@ -1,0 +1,16 @@
+{
+    "workflow_id": "workflow_128",
+    "result": {
+        "ip": "154.121.27.68",
+        "city": "Algiers",
+        "region": "Algiers",
+        "country": "DZ",
+        "loc": "36.7323,3.0875",
+        "org": "AS327712 Telecom Algeria",
+        "postal": "16006",
+        "timezone": "Africa/Algiers",
+        "username": "zino"
+    },
+    "note": "User from anoher city, region or country",
+    "anomaly": true
+}

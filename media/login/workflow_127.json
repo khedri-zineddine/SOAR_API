@@ -1,0 +1,16 @@
+{
+    "workflow_id": "workflow_127",
+    "result": {
+        "ip": "105.111.127.222",
+        "city": "Batna",
+        "region": "Batna",
+        "country": "DZ",
+        "loc": "35.5560,6.1741",
+        "org": "AS36947 Telecom Algeria",
+        "postal": "05062",
+        "timezone": "Africa/Algiers",
+        "username": "massihadjloum"
+    },
+    "note": "User from anoher city, region or country",
+    "anomaly": true
+}
