@@ -6,7 +6,7 @@ import imaplib
 
 class EmailConnection:
     def __init__(self,imap='imap.gmail.com') -> None:
-        self.access_token = "ya29.A0ARrdaM-kSlxZjG21W6Ml_MclFDcaKwKuadVcfpBkc9tqMJxjDGn2snJSPxtemTHkH2gMLsLWsZ8uL_X_on0d-aWhvMxgzm7ajLh0bHC8nkdAvu2kEc1XQajWUiUbhnU3Kyfe9y7BmHCx7FdPrx1foWTNTR0aoQYUNnWUtBVEFTQVRBU0ZRRl91NjFWYXFQVVpIQjF0OTRkSF94OWhsNGROUQ0165"
+        self.access_token = "ya29.a0ARrdaM8ww1QQYCFRezK8hnj6RmeYsWmd1db__Qf3dgN756cmi4uuqZkoWxV7hZJakwWPJqrEziln1smacFvNw723CXU16B63TqYSAmoAtLz80WlSTlQ0SaJCeRKJGTunIGovfLP0gcuePdyXp87dEoKygp1cIw"
         self.imap_conn = imaplib.IMAP4_SSL(imap)
         self.imap_conn.debug = 4
         
@@ -23,8 +23,10 @@ class EmailConnection:
                 Must not be base64-encoded, since imaplib does its own base64-encoding.
         """
         #print
+        #if not self.imap_conn:
+        #self.imap_conn.logout()
         self.imap_conn.authenticate('XOAUTH2', lambda x: auth_string)
-        self.imap_conn.select('INBOX')
+        self.imap_conn.select('Inbox')
 
     def GenerateOAuth2String(self,username, access_token, base64_encode=False):
         """Generates an IMAP OAuth2 authentication string.

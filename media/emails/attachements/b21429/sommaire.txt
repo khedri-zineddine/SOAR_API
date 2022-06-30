@@ -1,0 +1,82 @@
+Part 01 :
+ETAT DE L’ART
+
+Chap 01 : Généralité sur les SOC
+Chap 02 : NG-SOC
+Chap 03 : SOAR
+
+Part 02 : Conception, Implémentation Et Tests
+
+CH01 : Conception
+ 
+- Introduction
+
+- Contexte et problématique
+
+- Conditions requises
+	- Infrastructure
+	- SOC Environement 
+	- Machine attaquante
+
+- Méthodologie
+
+- Vision
+
+- Architecture générale du système SOAR
+
+- Spécifications du système SOAR
+
+      Spécifications fonctionnelles
+      Spécifications non fonctionnelles
+
+
+- Modélisation des fonctionnalités du système (Flux de travail du système)
+
+
+
+- Environnement SOC
+
+
+- Attaques utilisé 
+
+
+
+CH02 : Implémentation
+
+-  Environnement de simulation
+	GNS3 
+	VMware workstation
+	Images, VMs, outils
+
+
+- Installation et configuration d'infrastructure
+
+	- Coté Environement SOC
+	- Coté Equipements Réseaux
+	- Coté Serveur Web
+
+
+- Outils de développement
+
+- Bibliothèques Python utilisées
+
+
+- Implémentation de SOAR 
+	- Plateforme SOAR
+	
+	- ...
+
+
+
+CH02 : Tests et Résultats
+
+
+Introduction 
+
+
+Scénario 1 
+
+Scénario 2
+
+
+Scénario 3 ...

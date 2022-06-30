@@ -88,9 +88,10 @@ class LoginAnomaly(AppBase):
         str_data = json.dumps(final_result, default=default)
         self.redis_conn.set(workflow_id,str_data)
         #send msg to listner
-        msg = format_sse(data=str_data)
-        self.announcer.announce(msg=msg)
         if final_result["anomaly"]:
+            print('-- i will announce the attack -------')
+            msg = format_sse(data=str_data)
+            self.announcer.announce(msg=msg)
             DBManager.loginanomaly_col.insert_one(final_result)
 
         #DBManager.loginanomaly_col.insert_one(final_result)

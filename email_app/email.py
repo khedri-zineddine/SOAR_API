@@ -5,6 +5,7 @@ import json
 import socket
 import eml_parser
 import imaplib
+from flask_cors import cross_origin
 from glom import glom
 import base64
 import logging
@@ -66,7 +67,9 @@ class Email(AppBase):
         return {"data":data}
     
     @route('imap',methods=['POST'])
+    @cross_origin()
     def get_emails_imap(self):
+        print("--------- start phishing email -------------------")
         data = json.loads(request.data)
         try:
             username = data['username']
@@ -192,9 +195,8 @@ class Email(AppBase):
         # Convert <amount> of mails in json
         emails = []
         ep = eml_parser.EmlParser(
-            include_attachment_data=include_attachment_data
-            or upload_attachments,
-            include_raw_body=include_raw_body,
+            include_attachment_data=True,
+            include_raw_body=True,
         )
 
         if len(id_list) == 0:
@@ -236,10 +238,10 @@ class Email(AppBase):
                     output_dict = parsed_eml
 
                 output_dict["imap_id"] = id_list[i]
-
                 # Add message-id as top returned field
                 output_dict["message_id"] = parsed_eml["header"]["header"]["message-id"][0]
                 email_id = str(output_dict["imap_id"]).replace("'","")
+                
                 if upload_email:
                     self.logger.info("Uploading email to store")
                     self.save_email(data[0][1],f'{email_id}.msg')
@@ -248,10 +250,10 @@ class Email(AppBase):
                     #output_dict["email_uid"] = email_id[0]
                 if upload_attachments:
                     self.logger.info("Uploading email ATTACHMENTS to store")
-                    output_dict["attachment"] = []
-                    output_dict['attachements_path'] = []
+                    if not output_dict.get('attachment',None):
+                        output_dict["attachment"] = []
+                        output_dict['attachements_path'] = []
                     try:
-                        print('-------------------------',parsed_eml["attachment"])
                         output_dict['attachements_path'] = [os.path.join(MEDIA_PATH,'attachements',email_id,x['filename']) for x in parsed_eml["attachment"]]
                         # Don't need this raw.
                         for x in parsed_eml["attachment"]:
@@ -278,11 +280,30 @@ class Email(AppBase):
         self.url_analyzer.scan(workflow_id)
         self.virustotal_analyzer.scan_files(workflow_id)
         data = json.loads(self.redis_conn.get(workflow_id))
-        #final_data = self.is_phishing_mail(data)
-        #DBManager.loginanomaly_col.insert_one(data)
+        final_data = self.is_phishing_mail(data)
+        if len(final_data)>0:
+            data_to_return = {
+                "phishing":True,
+                "title": "Email de phishing est détecté",
+                "status": "Terminé",
+                "time": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f+0000"),
+                "typeVulnerability": "web",
+                "img": "email.png",
+                "details":final_data,
+            }
+            DBManager.email_col.insert_one(data_to_return)
+            return data_to_return
+        email.logout()
         return {
             #"data":final_data,
-            "real_data":data
+            "phishing":False,
+            "title": "Email de phishing est détecté",
+            "status": "Terminé",
+            "time": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f+0000"),
+            "typeVulnerability": "web",
+            "img": "email.png",
+            "details":final_data,
+            "real_data":data,
         }
         
 
@@ -322,12 +343,10 @@ class Email(AppBase):
             tmp["scan_result"] = tmp_scan_result
 
             scan_file_result = item.get("scan_file_result",{})
-
             email = scan_file_result.get("email",{})
             scans = email.get("scans",None)
             tmp["email_malicious"] = self.is_malicious_file(scans)
             malicious_file = tmp["email_malicious"]
-
             attachments = scan_file_result.get("attachments",[])
             tmp_attachments = []
             for attach in attachments:
@@ -342,8 +361,8 @@ class Email(AppBase):
             tmp["attachments"] = tmp_attachments
             tmp["phishing"] = malicious_file or malicious_link
 
-            #if malicious_file or malicious_link:
-            final_data.append(tmp)
+            if malicious_file or malicious_link:
+                final_data.append(tmp)
         
         return final_data
     
@@ -361,7 +380,11 @@ class Email(AppBase):
         return False
     
     def is_malicious_file(self,scans):
+        #print('-- i will print scans ----')
+        #print(scans)
+        #print('-- i will print scans ----')
         if scans:
+            #print('- - - -  - true condition')
             ALYac = scans.get("ALYac",{})
             d_ALYac = ALYac.get("detected",False)
 
@@ -537,5 +560,6 @@ class Email(AppBase):
             d_ZoneAlarm = ZoneAlarm.get("detected",False)
 
             return d_ZoneAlarm or d_Zoner or d_Yandex or d_Zillya or d_VirIT or d_ViRobot or d_VBA32 or d_TrendMicro or d_TrendMicro_HouseCall or d_Tencent or d_TACHYON or d_Symantec or d_Sophos or d_Sangfor or d_SUPERAntiSpyware or d_Rising or d_Panda or d_NANO_Antivirus or d_Microsoft or d_MicroWorld_eScan or d_McAfee_GW_Edition or d_McAfee or d_MaxSecure or d_Kingsoft or d_Malwarebytes or d_MAX or d_Lionic or d_Kaspersky or d_K7GW or d_K7AntiVirus or d_Jiangmin or d_Ikarus or d_Gridinsoft or d_GData or d_F_Secure or d_Fortinet or d_FireEye or d_Emsisoft or d_ESET_NOD32 or d_DrWeb or d_Cyren or d_Cynet or d_Comodo or d_ClamAV or d_CAT_QuickHeal or d_Bkav or d_BitDefenderTheta or d_BitDefender or d_Baidu or d_Avira or d_Avast or d_Arcabit or d_AhnLab_V3 or d_Ad_Aware or d_Acronis or d_ALYac
+        
         
         return False

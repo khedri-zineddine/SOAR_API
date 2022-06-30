@@ -15,7 +15,7 @@ from models.DBManager import DBManager
 
 RULE_ID = "5760"
 RULE_ID_MAX_TRIES = "5758"
-
+TIME_TO_NEXT_EVENT = 10
 class SSHBruteForceAnalyzer(AppBase):
     announcer = MessageAnnouncer()
     def __init__(self,REDIS_URL='127.0.0.1',REDIS_PORT='6379',DB_INDEX=1):
@@ -153,7 +153,7 @@ class SSHBruteForceAnalyzer(AppBase):
         return flask.Response(stream(), mimetype='text/event-stream')
 
     def send_event(self,current_date,last_date):
-        this_date = dt.strptime(current_date, "%Y-%m-%dT%H:%M:%S.%f+0000") - timedelta(minutes=5)
+        this_date = dt.strptime(current_date, "%Y-%m-%dT%H:%M:%S.%f+0000") - timedelta(minutes=TIME_TO_NEXT_EVENT)
         previous_date = dt.strptime(last_date,"%Y-%m-%dT%H:%M:%S.%f+0000")
         return this_date>=previous_date
     
