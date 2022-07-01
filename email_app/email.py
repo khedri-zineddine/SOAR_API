@@ -48,8 +48,8 @@ def default(o):
 
 class Email(AppBase):
     
-    email_connection = EmailConnection()
-    email_connection.connect_to_gmail(USERNAME)
+    #email_connection = EmailConnection()
+    #email_connection.connect_to_gmail(USERNAME)
     def __init__(self,REDIS_URL='127.0.0.1',REDIS_PORT='6379',DB_INDEX=1) -> None:
         super().__init__(REDIS_URL,REDIS_PORT,DB_INDEX)
         self.url_analyzer = UrlscanAnalyzer()
@@ -79,8 +79,8 @@ class Email(AppBase):
         print(request.method)
         data = json.loads(request.data)
         try:
-            username = data['username']
-            password = data['password']
+            username = 'hz_khedri@esi.dz'
+            password = 'guocyhrsrkaglxvo'
             imap_server = data['imap_server']
             foldername = data['foldername']
             amount = data['amount']
@@ -131,7 +131,7 @@ class Email(AppBase):
                     "reason": "Amount needs to be a number, not %s" % amount,
                 }
 
-        '''try:
+        try:
             email = imaplib.IMAP4_SSL(imap_server)
         except ConnectionRefusedError as error:
             try:
@@ -160,10 +160,10 @@ class Email(AppBase):
                 "reason": "Failed to log into %s: %s" % (username, error),
             }
 
-        email.select(foldername)'''
+        email.select(foldername)
         
         #self.email_connection.connect_to_gmail(username)
-        email = self.email_connection.imap_conn
+        #email = self.email_connection.imap_conn
         try:
             # IMAP search queries, e.g. "seen" or "read"
             # https://www.rebex.net/secure-mail.net/features/imap-search.aspx
