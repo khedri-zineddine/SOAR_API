@@ -1,0 +1,24 @@
+{
+    "workflow_id": "workflow_266",
+    "result": {
+        "ip": "197.202.60.40",
+        "city": "Batna",
+        "region": "Batna",
+        "country": "DZ",
+        "loc": "35.5560,6.1741",
+        "org": "AS36947 Telecom Algeria",
+        "postal": "05062",
+        "timezone": "Africa/Algiers",
+        "username": "massihadjloum",
+        "new_user": true
+    },
+    "note": "User from anoher city, region or country",
+    "anomaly": true,
+    "time": "2022-07-01T11:27:41.525+0000",
+    "agent": {
+        "id": "001",
+        "name": "ubuntu",
+        "ip": "10.128.0.4"
+    },
+    "_id": "62beda310ace0031db5e1fa5"
+}

@@ -1,0 +1,22 @@
+{
+    "workflow_id": "workflow_270",
+    "result": {
+        "ip": "35.235.244.33",
+        "city": "Fremont",
+        "region": "California",
+        "country": "US",
+        "loc": "37.5483,-121.9886",
+        "org": "AS15169 Google LLC",
+        "postal": "94536",
+        "timezone": "America/Los_Angeles",
+        "username": "massihadjloum"
+    },
+    "note": "User from anoher city, region or country",
+    "anomaly": true,
+    "time": "2022-07-01T11:42:30.190+0000",
+    "agent": {
+        "id": "000",
+        "name": "ubuntu-server-22"
+    },
+    "_id": "62bedda9e10bafcad98f0227"
+}

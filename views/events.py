@@ -13,7 +13,6 @@ class EventClass(AppBase):
         super().__init__(REDIS_URL,REDIS_PORT,DB_INDEX)
     
     @route('all',methods=['GET'])
-    @cross_origin()
     def get_event(self):
         print('----------- this event func ---------')
         ssh_e = DBManager.ssh_col.find({}).sort('time',-1)

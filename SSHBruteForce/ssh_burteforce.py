@@ -2,7 +2,6 @@
 from genericpath import exists
 from site import check_enableusersite
 import flask
-from yaml import full_load
 from app_base import AppBase
 from flask_classful import route
 from flask import jsonify, request

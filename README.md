@@ -40,10 +40,13 @@ To execute email phishing workflow follow the instruction bellow :
 3- go to "syscheck and add "<directories check_all="yes" whodata="yes">path of directory you want to monitor</directories>""
 
 # Steps to generate acces token
+
 1- execute "py oauth2.py --generate_oauth2_token --client_id=750511791638-sr3n0i3q291ifgfhclt1l99pcr7aifmu.apps.googleusercontent.com --client_secret=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"
 2- get code and enter it in the cmd, and you will get access token
 
 3- get access_token using refresh_token "py oauth2.py --refresh_token=1//03nTOlF4aA-MaCgYIARAAGAMSNwF-L9IrUywc39EOSbXD1cEEj2FTnXgegz2G8_jjoihZoqaer4ELSIGB2sqrdai_4ABGZACCGrM --client_id=750511791638-sr3n0i3q291ifgfhclt1l99pcr7aifmu.apps.googleusercontent.com --client_secret=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"
+
+4- after you get access_token put it in email_app/email_connection/ self.access_token varibale
 
 refresh token:1//03nTOlF4aA-MaCgYIARAAGAMSNwF-L9IrUywc39EOSbXD1cEEj2FTnXgegz2G8_jjoihZoqaer4ELSIGB2sqrdai_4ABGZACCGrM
 

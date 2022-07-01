@@ -12,8 +12,8 @@ from quart import Quart
 from flask import Flask
 
 app = Flask(__name__)
-
-
+app.config['CORS_HEADERS'] = 'Content-Type'
+cors = CORS(app,resources={r'*':{'origins':'*'}})
   
 Email.register(app,route_base='/email')
 UrlscanAnalyzer.register(app,route_base='/url_scan')
