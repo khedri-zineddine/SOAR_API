@@ -1,4 +1,5 @@
 from re import M
+import flask
 from flask_classful import route
 from flask import request
 import json
@@ -20,6 +21,8 @@ from VirusTotal.virustotal import VirusTotalAnalyzer
 from email_app.email_connection import EmailConnection
 
 MEDIA_PATH = 'media/emails/'
+USERNAME = "itachibatna@gmail.com"
+
 def json_serial(obj):
     if isinstance(obj, datetime.datetime):
         serial = obj.isoformat()
@@ -44,11 +47,13 @@ def default(o):
             return o
 
 class Email(AppBase):
+    
+    email_connection = EmailConnection()
+    email_connection.connect_to_gmail(USERNAME)
     def __init__(self,REDIS_URL='127.0.0.1',REDIS_PORT='6379',DB_INDEX=1) -> None:
         super().__init__(REDIS_URL,REDIS_PORT,DB_INDEX)
         self.url_analyzer = UrlscanAnalyzer()
         self.virustotal_analyzer = VirusTotalAnalyzer()
-        self.email_connection = EmailConnection()
 
     def index(self):
         return 'hello'
@@ -57,7 +62,9 @@ class Email(AppBase):
         file_name = secure_filename(filename)
         file_path = os.path.join(MEDIA_PATH,type ,path,file_name)
         if not type=='msg':
-            os.mkdir(os.path.join(MEDIA_PATH,type ,path))
+            if not os.path.isdir(os.path.join(MEDIA_PATH,type ,path)):
+                print('--------- directory exist ------------')
+                os.mkdir(os.path.join(MEDIA_PATH,type ,path))
         with open(file_path,'wb') as file:
             file.write(data)
     
@@ -66,10 +73,10 @@ class Email(AppBase):
         data = json.loads(self.redis_conn.get(workflow_id))
         return {"data":data}
     
-    @route('imap',methods=['POST'])
-    @cross_origin()
+    @route('imap',methods=['POST','OPTIONS'])
     def get_emails_imap(self):
         print("--------- start phishing email -------------------")
+        print(request.method)
         data = json.loads(request.data)
         try:
             username = data['username']
@@ -154,7 +161,8 @@ class Email(AppBase):
             }
 
         email.select(foldername)'''
-        self.email_connection.connect_to_gmail(username)
+        
+        #self.email_connection.connect_to_gmail(username)
         email = self.email_connection.imap_conn
         try:
             # IMAP search queries, e.g. "seen" or "read"
@@ -274,6 +282,7 @@ class Email(AppBase):
             }
 
         
+        print("--------- analyze the data -------------------")
         db_size = self.redis_conn.dbsize()
         workflow_id = f'workflow_{db_size+1}'
         self.redis_conn.set(workflow_id,json.dumps(emails, default=default))
@@ -282,29 +291,23 @@ class Email(AppBase):
         data = json.loads(self.redis_conn.get(workflow_id))
         final_data = self.is_phishing_mail(data)
         if len(final_data)>0:
+            print('---------- I will lunch an attack --------------------')
             data_to_return = {
                 "phishing":True,
                 "title": "Email de phishing est détecté",
                 "status": "Terminé",
-                "time": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f+0000"),
+                "time": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f+0000"),
                 "typeVulnerability": "web",
                 "img": "email.png",
                 "details":final_data,
             }
             DBManager.email_col.insert_one(data_to_return)
+            data_to_return["_id"] = str(data_to_return["_id"])
             return data_to_return
-        email.logout()
-        return {
-            #"data":final_data,
-            "phishing":False,
-            "title": "Email de phishing est détecté",
-            "status": "Terminé",
-            "time": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f+0000"),
-            "typeVulnerability": "web",
-            "img": "email.png",
-            "details":final_data,
-            "real_data":data,
-        }
+        #email.logout()
+        response = flask.jsonify({'some': 'data'})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
         
 
     def is_phishing_mail(self,data):

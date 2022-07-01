@@ -6,7 +6,7 @@ import imaplib
 
 class EmailConnection:
     def __init__(self,imap='imap.gmail.com') -> None:
-        self.access_token = "ya29.a0ARrdaM8ww1QQYCFRezK8hnj6RmeYsWmd1db__Qf3dgN756cmi4uuqZkoWxV7hZJakwWPJqrEziln1smacFvNw723CXU16B63TqYSAmoAtLz80WlSTlQ0SaJCeRKJGTunIGovfLP0gcuePdyXp87dEoKygp1cIw"
+        self.access_token = "ya29.A0ARrdaM_w4rmQSDz2DVz6p1CsgmD3lTUUsKQniMEDN6VYNM0Nl1ZsPwHPPizPQ_QOEDFg94-2g32DMYPddnShqD3mR7IRozqo_dY3mURd48P85loT5P_QHqYoqxP3y6iwGjumKXN1nAt2kKJP6yiUY_stv7aefQYUNnWUtBVEFTQVRBU0ZRRl91NjFWUXhVU2Z1dE9mVGxLeGw1MTZMNGpCQQ0165"
         self.imap_conn = imaplib.IMAP4_SSL(imap)
         self.imap_conn.debug = 4
         

@@ -1,0 +1,95 @@
+{
+    "timestamp": "2022-07-01T11:56:49.454+0000",
+    "rule": {
+        "level": 7,
+        "description": "Integrity checksum changed.",
+        "id": "550",
+        "mitre": {
+            "id": [
+                "T1565.001"
+            ],
+            "tactic": [
+                "Impact"
+            ],
+            "technique": [
+                "Stored Data Manipulation"
+            ]
+        },
+        "firedtimes": 7,
+        "mail": false,
+        "groups": [
+            "ossec",
+            "syscheck",
+            "syscheck_entry_modified",
+            "syscheck_file"
+        ],
+        "pci_dss": [
+            "11.5"
+        ],
+        "gpg13": [
+            "4.11"
+        ],
+        "gdpr": [
+            "II_5.1.f"
+        ],
+        "hipaa": [
+            "164.312.c.1",
+            "164.312.c.2"
+        ],
+        "nist_800_53": [
+            "SI.7"
+        ],
+        "tsc": [
+            "PI1.4",
+            "PI1.5",
+            "CC6.1",
+            "CC6.8",
+            "CC7.2",
+            "CC7.3"
+        ]
+    },
+    "agent": {
+        "id": "001",
+        "name": "ubuntu",
+        "ip": "10.128.0.4"
+    },
+    "manager": {
+        "name": "ubuntu-server-22"
+    },
+    "id": "1656676609.3404157",
+    "full_log": "File '/etc/group' modified\nMode: scheduled\nChanged attributes: size,mtime,inode,md5,sha1,sha256\nSize changed from '1099' to '1086'\nOld modification time was: '1656676362', now it is '1656676558'\nOld inode was: '2345', now it is '2482'\nOld md5sum was: 'e51312e3236e92007dd1e787ea7b0d3c'\nNew md5sum is : 'f1f6d26a6b8a210bb3879e17865d9dc0'\nOld sha1sum was: 'cd09225cda1673cb5fd35ab7853943e35aa1cc24'\nNew sha1sum is : 'fa4757f93fdee37bf56c44a3338ef9e94724e51f'\nOld sha256sum was: '17300ba605550848e49b476b4ec81dd5ebf41345ad965b3bc8c1aa6e3e4c6d9e'\nNew sha256sum is : '91310ddfe7f20e92c9298c7b5d3d0a4d5878bd2d2ac5dbbe4535928389f9c943'\n",
+    "syscheck": {
+        "path": "/etc/group",
+        "mode": "scheduled",
+        "size_before": "1099",
+        "size_after": "1086",
+        "perm_after": "rw-r--r--",
+        "uid_after": "0",
+        "gid_after": "0",
+        "md5_before": "e51312e3236e92007dd1e787ea7b0d3c",
+        "md5_after": "f1f6d26a6b8a210bb3879e17865d9dc0",
+        "sha1_before": "cd09225cda1673cb5fd35ab7853943e35aa1cc24",
+        "sha1_after": "fa4757f93fdee37bf56c44a3338ef9e94724e51f",
+        "sha256_before": "17300ba605550848e49b476b4ec81dd5ebf41345ad965b3bc8c1aa6e3e4c6d9e",
+        "sha256_after": "91310ddfe7f20e92c9298c7b5d3d0a4d5878bd2d2ac5dbbe4535928389f9c943",
+        "uname_after": "root",
+        "gname_after": "root",
+        "mtime_before": "2022-07-01T11:52:42",
+        "mtime_after": "2022-07-01T11:55:58",
+        "inode_before": 2345,
+        "inode_after": 2482,
+        "changed_attributes": [
+            "size",
+            "mtime",
+            "inode",
+            "md5",
+            "sha1",
+            "sha256"
+        ],
+        "event": "modified"
+    },
+    "decoder": {
+        "name": "syscheck_integrity_changed"
+    },
+    "location": "syscheck"
+}

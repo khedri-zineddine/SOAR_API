@@ -93,7 +93,8 @@ class LoginAnomaly(AppBase):
             msg = format_sse(data=str_data)
             self.announcer.announce(msg=msg)
             DBManager.loginanomaly_col.insert_one(final_result)
-
+            final_result["_id"] = str(final_result["_id"])
+        
         #DBManager.loginanomaly_col.insert_one(final_result)
         with open(f'media/login/{workflow_id}.json','w') as f:
             f.write(json.dumps(final_result, default=default,indent=4))
