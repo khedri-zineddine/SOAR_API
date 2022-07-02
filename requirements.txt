@@ -17,6 +17,7 @@ filetype==1.0.13
 Flask==2.1.2
 Flask-Classful==0.14.2
 Flask-Cors==3.0.10
+Flask-SSE==1.0.0
 glom==22.1.0
 h11==0.13.0
 h2==4.1.0
@@ -52,5 +53,3 @@ Werkzeug==2.1.2
 wrapt==1.14.1
 wsproto==1.1.0
 zipp==3.8.0
-flask_sse==1.0.0
-APScheduler==3.9.1
