@@ -3,7 +3,7 @@ from flask_classful import route
 from flask import request
 from app_base import AppBase
 from models.DBManager import DBManager
-from utils import AppUtils
+from appUtils import AppUtils
 
 
 class STP_ROOT(AppBase):
