@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>CDP Rapport de la réponse</title>
+
+		<style>
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			/** RTL **/
+			.invoice-box.rtl {
+				direction: rtl;
+				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			}
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="invoice-box">
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td class="title">
+									<img src="data:image/png;base64,{{ imgvarlogo }}" style="width: 100%; max-width: 300px" />
+
+								</td>
+
+								<td>
+									Rapport Numéro : {{ idRapport }}<br />
+									Date de création : <span id='day'></span> <span id='month'></span> <span id='year'></span><br />
+									Heur de création : <span id='time'></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h2> <u>Object :</u> Rapport de l'attaque de manipulation de la racine du protocole Spanning Tree</h2>
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Centre Opérationnel De Sécurité (SOC)<br />
+									ICT-Towers<br />
+									Cité Boushaki “A” Lot N° 25, Bab Ezzouar
+								</td>
+
+								<td>
+									Résponsable: Abderrazek Bachir Bouiadjra<br />
+									Abdeldjalil BENAOUDA<br />
+									abdeldjalil.benaouda.99@gmail.com
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Description de l'attaque</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>Spanning Tree Protocol (STP) empêche les boucles de pontage dans un environnement de réseau commuté redondant. Il est constitué comme une topologie arborescente hiérarchique avec un switch "racine" en haut. Un switch est élu comme racine en fonction de la priorité configurée la plus basse de n'importe quel switch (0 à 65 535). Après l'élection d'un pont racine, la topologie est établie du point de vue de la connectivité. Les switches déterminent le chemin vers le pont racine et tous les chemins redondants sont bloqués. STP envoie des notifications et des accusés de réception de changement de configuration et de topologie (TCN/TCA) à l'aide de BPDU (Bridge Protocol Data Units).</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="heading">
+					<td>Résultat de l'attaque sur le fonctionnement de l'infrastructure</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>Une attaque STP implique qu'un attaquant usurpe le pont racine dans la topologie. L'attaquant diffuse une BPDU de changement de configuration/topologie STP dans le but de forcer un recalcul STP. Le BPDU envoyé annonce que le système de l'attaquant a une priorité de pont inférieure. L'attaquant peut alors voir une variété de trames qui lui sont transmises par d'autres switches. Le recalcul STP peut également provoquer une condition de déni de service (DoS) sur le réseau en provoquant une interruption de 30 à 45 secondes chaque fois que le pont racine change</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="heading">
+					<td>Réponse automatique contre l'attaque</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>Il existe deux approches pour protéger un réseau contre ce type d'attaque STP : <strong>BPDU Guard</strong>, <strong>Root Guard</strong>, <strong>Limiteur de débit PDU de couche 2</strong>, Ainsi pour ce cas vous avez la réponse automatique avec la description suivante : <br> <strong> {{ variable }} </strong></td>
+					<td></td>
+				</tr>
+
+
+				<tr class="item last">
+					<td>Bab Ezzouar, le <span id='daysign'></span> <span id='monthsign'></span> <span id='yearsign'></span></td>
+
+					<td>Signature</td>
+				</tr>
+
+				<tr class="total">
+					<td></td>
+
+					<td>
+						<img src="data:image/png;base64,{{ imgvarsign }}" style="width: 100%; max-width: 300px" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
+
+<script>
+	var time = new Date().toLocaleTimeString(); 
+	document.getElementById('time').innerHTML=time;
+
+	var day = new Date().getDate(); 
+	document.getElementById('day').innerHTML=day;
+	const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+  "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+];
+	var month = new Date().getMonth(); 
+	var monthf=monthNames[month]
+	document.getElementById('month').innerHTML=monthf;
+	var year = new Date().getFullYear(); 
+	document.getElementById('year').innerHTML=year;
+
+	var daysign = new Date().getDate(); 
+	document.getElementById('daysign').innerHTML=daysign;
+	var monthsign = new Date().getMonth(); 
+	var monthf=monthNames[monthsign]
+	document.getElementById('monthsign').innerHTML=monthf;
+	var yearsign = new Date().getFullYear(); 
+	document.getElementById('yearsign').innerHTML=yearsign;
+
+</script>
