@@ -1,0 +1,308 @@
+[{
+  "_id": {
+    "$oid": "62bb09688da12e3ba7654ccf"
+  },
+  "workflow_id": "workflow_186",
+  "result": {
+    "username": "massihadjloum",
+    "ip": "197.204.183.102"
+  },
+  "note": "The user was already logged in before from the city, region or country",
+  "anomaly": false,
+  "time": "2022-06-28T13:57:52.246+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bb09738da12e3ba7654cd0"
+  },
+  "workflow_id": "workflow_187",
+  "result": {
+    "username": "massihadjloum",
+    "ip": "197.204.183.102"
+  },
+  "note": "The user was already logged in before from the city, region or country",
+  "anomaly": false,
+  "time": "2022-06-28T13:59:04.323+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bed3b000e825d4c670a206"
+  },
+  "workflow_id": "workflow_258",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T10:59:57.767+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bed51b462876313effc665"
+  },
+  "workflow_id": "workflow_261",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:06:00.324+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bed5b1637d98f3c5284fd3"
+  },
+  "workflow_id": "workflow_262",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:08:30.290+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bed8314b125fc9648502bc"
+  },
+  "workflow_id": "workflow_263",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:19:10.971+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bed8d70ace0031db5e1fa3"
+  },
+  "workflow_id": "workflow_264",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:21:57.149+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bed9a70ace0031db5e1fa4"
+  },
+  "workflow_id": "workflow_265",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:25:23.397+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62beda310ace0031db5e1fa5"
+  },
+  "workflow_id": "workflow_266",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:27:41.525+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62beda970ace0031db5e1fa6"
+  },
+  "workflow_id": "workflow_267",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:29:23.628+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bedc940ace0031db5e1fa7"
+  },
+  "workflow_id": "workflow_268",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:37:54.184+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bedcb90ace0031db5e1fa8"
+  },
+  "workflow_id": "workflow_269",
+  "result": {
+    "ip": "197.202.60.40",
+    "city": "Batna",
+    "region": "Batna",
+    "country": "DZ",
+    "loc": "35.5560,6.1741",
+    "org": "AS36947 Telecom Algeria",
+    "postal": "05062",
+    "timezone": "Africa/Algiers",
+    "username": "massihadjloum",
+    "new_user": true
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:38:30.221+0000",
+  "agent": {
+    "id": "001",
+    "name": "ubuntu",
+    "ip": "10.128.0.4"
+  }
+},{
+  "_id": {
+    "$oid": "62bedda9e10bafcad98f0227"
+  },
+  "workflow_id": "workflow_270",
+  "result": {
+    "ip": "35.235.244.33",
+    "city": "Fremont",
+    "region": "California",
+    "country": "US",
+    "loc": "37.5483,-121.9886",
+    "org": "AS15169 Google LLC",
+    "postal": "94536",
+    "timezone": "America/Los_Angeles",
+    "username": "massihadjloum"
+  },
+  "note": "User from anoher city, region or country",
+  "anomaly": true,
+  "time": "2022-07-01T11:42:30.190+0000",
+  "agent": {
+    "id": "000",
+    "name": "ubuntu-server-22"
+  }
+}]
