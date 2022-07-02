@@ -1,36 +1,29 @@
 {
-    "timestamp": "2022-07-02T14:46:47.157+0000",
+    "timestamp": "2022-07-02T16:09:34.156+0000",
     "rule": {
         "level": 5,
-        "description": "sshd: Attempt to login using a non-existent user",
-        "id": "5710",
+        "description": "sshd: authentication failed.",
+        "id": "5760",
         "mitre": {
             "id": [
                 "T1110.001",
-                "T1021.004",
-                "T1078"
+                "T1021.004"
             ],
             "tactic": [
                 "Credential Access",
-                "Lateral Movement",
-                "Defense Evasion",
-                "Persistence",
-                "Privilege Escalation",
-                "Initial Access"
+                "Lateral Movement"
             ],
             "technique": [
                 "Password Guessing",
-                "SSH",
-                "Valid Accounts"
+                "SSH"
             ]
         },
-        "firedtimes": 255,
+        "firedtimes": 10,
         "mail": false,
         "groups": [
             "syslog",
             "sshd",
-            "authentication_failed",
-            "invalid_login"
+            "authentication_failed"
         ],
         "gdpr": [
             "IV_35.7.d",
@@ -44,13 +37,11 @@
         ],
         "nist_800_53": [
             "AU.14",
-            "AC.7",
-            "AU.6"
+            "AC.7"
         ],
         "pci_dss": [
             "10.2.4",
-            "10.2.5",
-            "10.6.1"
+            "10.2.5"
         ],
         "tsc": [
             "CC6.1",
@@ -67,11 +58,11 @@
     "manager": {
         "name": "ubuntu-server-22"
     },
-    "id": "1656773207.4104481",
-    "full_log": "Jul  2 14:46:46 ubuntu sshd[127015]: Invalid user user from 120.48.61.5 port 45622",
+    "id": "1656778174.4281401",
+    "full_log": "Jul  2 16:09:32 ubuntu sshd[127515]: Failed password for ubuntu from 34.81.69.1 port 55608 ssh2",
     "predecoder": {
         "program_name": "sshd",
-        "timestamp": "Jul  2 14:46:46",
+        "timestamp": "Jul  2 16:09:32",
         "hostname": "ubuntu"
     },
     "decoder": {
@@ -79,9 +70,9 @@
         "name": "sshd"
     },
     "data": {
-        "srcip": "120.48.61.5",
-        "srcport": "45622",
-        "srcuser": "user"
+        "srcip": "34.81.69.1",
+        "srcport": "55608",
+        "dstuser": "ubuntu"
     },
     "location": "/var/log/auth.log"
 }
