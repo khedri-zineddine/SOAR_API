@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from pprint import pprint
 
-MONGODB_URL = "mongodb://localhost:27017"
+MONGODB_URL = "mongodb+srv://zinokhedri:123456789zino@cluster0.qjeed.mongodb.net/?retryWrites=true&w=majority"
 class DBManager:
     client = MongoClient(MONGODB_URL)
     db=client.soar_db
@@ -9,6 +9,7 @@ class DBManager:
     loginanomaly_col = db.LoginAnomalyEvent
     ssh_col = db.SSHEvent
     email_col = db.EmailEvent
+    cdpposts=db.cdpposts
 
     @classmethod
     def check_status(cls):

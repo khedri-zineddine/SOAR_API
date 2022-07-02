@@ -23,6 +23,9 @@ from email_app.email_connection import EmailConnection
 MEDIA_PATH = 'media/emails/'
 USERNAME = "itachibatna@gmail.com"
 
+EMAIL_SOURCE_USERNAME='hz_khedri@esi.dz'
+EMAIL_SOURCE_PASSWORD='guocyhrsrkaglxvo'
+
 def json_serial(obj):
     if isinstance(obj, datetime.datetime):
         serial = obj.isoformat()
@@ -79,8 +82,8 @@ class Email(AppBase):
         print(request.method)
         data = json.loads(request.data)
         try:
-            username = 'hz_khedri@esi.dz'
-            password = 'guocyhrsrkaglxvo'
+            username = EMAIL_SOURCE_USERNAME
+            password = EMAIL_SOURCE_PASSWORD
             imap_server = data['imap_server']
             foldername = data['foldername']
             amount = data['amount']

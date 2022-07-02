@@ -6,6 +6,7 @@ from LoginAnomalies.login_anomalies import LoginAnomaly
 from MalwareDetection.malware_detection import MalwareAnalyzer
 from Ransomware.ransomware_attaque import RansomwareAnalyzer
 from SSHBruteForce.ssh_burteforce import SSHBruteForceAnalyzer
+from CdpDos.cdp_dos import CDP_DOS
 from views.events import EventClass
 from flask_cors import CORS
 from quart import Quart
@@ -23,6 +24,10 @@ MalwareAnalyzer.register(app,route_base='/malware')
 RansomwareAnalyzer.register(app,route_base='/ransomware')
 SSHBruteForceAnalyzer.register(app,route_base='/ssh')
 EventClass.register(app,route_base='/events')
+
+# attaque reseaux
+
+CDP_DOS.register(app,route_base='/cdp-dos')
 
 if __name__=='__main__':
     app.run(debug=True, threaded=True)
