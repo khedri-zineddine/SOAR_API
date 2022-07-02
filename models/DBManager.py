@@ -11,6 +11,7 @@ class DBManager:
     loginanomaly_col = db.LoginAnomalyEvent
     ssh_col = db.SSHEvent
     email_col = db.EmailEvent
+
     cdp_dos = db.cdp_dos
     stp_dos = db.stp_dos
     dhcp_starvation = db.dhcp_starvation

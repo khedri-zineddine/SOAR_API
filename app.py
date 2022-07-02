@@ -10,9 +10,15 @@ from views.events import EventClass
 from flask_cors import CORS
 from flask import Flask
 
+# attaque reseaux
+
 from CDP_DOS.cdp_dos import CDP_DOS
 from STP_DOS.stp_dos import STP_DOS
 from DHCP_Starvation.DHCP_Starvation import DHCP_Starvation
+from DHCP_Spoof.dhcp_spoof import DHCP_Spoof
+from STP_Root.stp_root import STP_ROOT
+from HSRP_Attack.hsrp_attack import HSRP_Attack
+from PeriodicPing.PeriodicPing import PeriodicPing
 
 app = Flask(__name__)
 app.config["CORS_HEADERS"] = "Content-Type"
@@ -32,6 +38,10 @@ EventClass.register(app, route_base="/events")
 CDP_DOS.register(app, route_base="/cdp-dos")
 STP_DOS.register(app, route_base="/stp-dos")
 DHCP_Starvation.register(app, route_base="/dhcp-starvation")
+DHCP_Spoof.register(app, route_base="/dhcp-spoof")
+STP_ROOT.register(app, route_base="/stp-root")
+HSRP_Attack.register(app, route_base="/hsrp-attack")
+PeriodicPing.register(app, route_base="/periodic-ping")
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)
