@@ -291,6 +291,7 @@ class Email(AppBase):
         workflow_id = f'workflow_{db_size+1}'
         self.redis_conn.set(workflow_id,json.dumps(emails, default=default))
         self.url_analyzer.scan(workflow_id)
+        print("-------------- scan files -----------------------")
         self.virustotal_analyzer.scan_files(workflow_id)
         data = json.loads(self.redis_conn.get(workflow_id))
         final_data = self.is_phishing_mail(data)
@@ -309,7 +310,15 @@ class Email(AppBase):
             data_to_return["_id"] = str(data_to_return["_id"])
             return data_to_return
         #email.logout()
-        return data_to_return
+        return  {
+                "phishing":False,
+                "title": "Email de phishing est détecté",
+                "status": "Terminé",
+                "time": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f+0000"),
+                "typeVulnerability": "web",
+                "img": "email.png",
+                "details":[],
+            }
         
 
     def is_phishing_mail(self,data):
@@ -332,8 +341,12 @@ class Email(AppBase):
             malicious_link = False
             for dom in domains:
                 tmp_dom = {}
-                tmp_dom["link"] = dom.get("link",'')
-                tmp_dom["malicious"] = self.is_malicious_link(dom.get("verdicts",None))
+                if isinstance(dom,str):
+                    tmp_dom["link"] = dom
+                    tmp_dom["malicious"] = False
+                else:
+                    tmp_dom["link"] = dom.get("link",'')
+                    tmp_dom["malicious"] = self.is_malicious_link(dom.get("verdicts",None))
                 malicious_link = tmp_dom["malicious"] or malicious_link
                 tmp_domains.append(tmp_dom)
             for url in urls:
