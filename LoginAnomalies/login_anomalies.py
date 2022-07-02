@@ -6,6 +6,7 @@ import flask
 import json
 from quart import websocket
 from utils.helpers import default
+
 from IPinfo.ipinfo_analyzer import IPinfoAnalyzer
 from utils.helpers import format_sse
 from utils.MessageAnnouncer import MessageAnnouncer
