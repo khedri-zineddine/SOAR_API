@@ -1,5 +1,5 @@
 {
-    "timestamp": "2022-07-02T16:09:34.156+0000",
+    "timestamp": "2022-07-02T17:56:56.823+0000",
     "rule": {
         "level": 5,
         "description": "sshd: authentication failed.",
@@ -18,7 +18,7 @@
                 "SSH"
             ]
         },
-        "firedtimes": 10,
+        "firedtimes": 16,
         "mail": false,
         "groups": [
             "syslog",
@@ -58,11 +58,11 @@
     "manager": {
         "name": "ubuntu-server-22"
     },
-    "id": "1656778174.4281401",
-    "full_log": "Jul  2 16:09:32 ubuntu sshd[127515]: Failed password for ubuntu from 34.81.69.1 port 55608 ssh2",
+    "id": "1656784616.4402921",
+    "full_log": "Jul  2 17:56:55 ubuntu sshd[128029]: Failed password for root from 46.101.43.141 port 60852 ssh2",
     "predecoder": {
         "program_name": "sshd",
-        "timestamp": "Jul  2 16:09:32",
+        "timestamp": "Jul  2 17:56:55",
         "hostname": "ubuntu"
     },
     "decoder": {
@@ -70,9 +70,9 @@
         "name": "sshd"
     },
     "data": {
-        "srcip": "34.81.69.1",
-        "srcport": "55608",
-        "dstuser": "ubuntu"
+        "srcip": "46.101.43.141",
+        "srcport": "60852",
+        "dstuser": "root"
     },
     "location": "/var/log/auth.log"
 }
