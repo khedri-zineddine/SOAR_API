@@ -10,9 +10,12 @@ from views.events import EventClass
 from flask_cors import CORS
 from quart import Quart
 from flask import Flask
+from apscheduler.schedulers.background import BackgroundScheduler
+from flask_sse import sse
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config["REDIS_URL"] = "redis://127.0.0.1"
 cors = CORS(app,resources={r'*':{'origins':'*'}})
   
 Email.register(app,route_base='/email')
@@ -23,6 +26,7 @@ MalwareAnalyzer.register(app,route_base='/malware')
 RansomwareAnalyzer.register(app,route_base='/ransomware')
 SSHBruteForceAnalyzer.register(app,route_base='/ssh')
 EventClass.register(app,route_base='/events')
+app.register_blueprint(sse,url_prefix='/stream')
 
 if __name__=='__main__':
     app.run(debug=True, threaded=True)

@@ -11,6 +11,7 @@ from datetime import datetime as dt, timedelta
 from utils.MessageAnnouncer import MessageAnnouncer
 from utils.helpers import format_sse
 from models.DBManager import DBManager
+from flask_sse import sse
 
 RULE_ID = "5760"
 RULE_ID_MAX_TRIES = "5758"
@@ -75,8 +76,9 @@ class SSHBruteForceAnalyzer(AppBase):
                 new_event = json.dumps(ssh_data)
                 self.redis_conn.set("ssh",new_event)
                 str_data = json.dumps(final_data, default=default)
-                msg = format_sse(data=str_data)
-                self.announcer.announce(msg=msg)
+                sse.publish(str_data, type='ssh')
+                #msg = format_sse(data=str_data)
+                #self.announcer.announce(msg=msg)
                 DBManager.ssh_col.insert_one(final_data)
                 #with open(f'SSHBruteForce/{agent["ip"]}.json','w') as f:
                 #    f.write(str_data)

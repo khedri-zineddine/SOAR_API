@@ -1,0 +1,15 @@
+{
+    "workflow_id": "workflow_295",
+    "result": {
+        "username": "massihadjloum",
+        "ip": "105.105.26.192"
+    },
+    "note": "The user was already logged in before from the city, region or country",
+    "anomaly": false,
+    "time": "2022-07-02T13:22:56.012+0000",
+    "agent": {
+        "id": "001",
+        "name": "ubuntu",
+        "ip": "10.128.0.4"
+    }
+}

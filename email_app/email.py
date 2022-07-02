@@ -73,7 +73,7 @@ class Email(AppBase):
         data = json.loads(self.redis_conn.get(workflow_id))
         return {"data":data}
     
-    @route('imap',methods=['POST','OPTIONS'])
+    @route('imap',methods=['POST'])
     def get_emails_imap(self):
         print("--------- start phishing email -------------------")
         print(request.method)

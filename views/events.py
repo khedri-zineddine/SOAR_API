@@ -3,6 +3,7 @@
 
 from bson.json_util import dumps,loads
 from flask import jsonify
+import flask
 from flask_cors import cross_origin
 from models.DBManager import DBManager
 from app_base import AppBase
@@ -12,7 +13,7 @@ class EventClass(AppBase):
     def __init__(self,REDIS_URL='127.0.0.1',REDIS_PORT='6379',DB_INDEX=1):
         super().__init__(REDIS_URL,REDIS_PORT,DB_INDEX)
     
-    @route('all',methods=['GET'])
+    @route('all',methods=['GET','OPTIONS'])
     def get_event(self):
         print('----------- this event func ---------')
         ssh_e = DBManager.ssh_col.find({}).sort('time',-1)
@@ -69,7 +70,10 @@ class EventClass(AppBase):
             email_arr.append(obj)
         
         total = [*ssh_arr,*email_arr,*loginanomaly_arr,*ransom_arr]
-        newlist = sorted(total, key=lambda d: d['time'],reverse=True) 
-        return {
-            "data":newlist
-        }
+        newlist = sorted(total, key=lambda d: d['time'],reverse=True)
+        response = flask.make_response({"data":newlist})
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Headers'] = 'Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept, Authorization'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS, HEAD'
+        response.headers['Access-Control-Expose-Headers'] = '*'
+        return response,200
