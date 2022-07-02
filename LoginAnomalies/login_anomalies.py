@@ -4,14 +4,16 @@ from flask_classful import route
 from flask import request
 import flask
 import json
+from quart import websocket
 from utils.helpers import default
+
 from IPinfo.ipinfo_analyzer import IPinfoAnalyzer
 from utils.helpers import format_sse
 from utils.MessageAnnouncer import MessageAnnouncer
 from models.DBManager import DBManager
+from flask_sse import sse
 
 class LoginAnomaly(AppBase):
-    announcer = MessageAnnouncer()
     def __init__(self,REDIS_URL='127.0.0.1',REDIS_PORT='6379',DB_INDEX=1):
         super().__init__(REDIS_URL,REDIS_PORT,DB_INDEX)
         self.ip_info_analyzer = IPinfoAnalyzer()
@@ -90,8 +92,7 @@ class LoginAnomaly(AppBase):
         #send msg to listner
         if final_result["anomaly"]:
             print('-- i will announce the attack -------')
-            msg = format_sse(data=str_data)
-            self.announcer.announce(msg=msg)
+            sse.publish(str_data, type='anomalies')
             DBManager.loginanomaly_col.insert_one(final_result)
             final_result["_id"] = str(final_result["_id"])
         
@@ -105,13 +106,4 @@ class LoginAnomaly(AppBase):
         self.redis_conn.set("login_cash",json.dumps({}))
         return self.redis_conn.get("login_cash")
 
-    @route('listen',methods=['GET'])
-    def listen(self):
-        def stream():
-            messages = self.announcer.listen()  # returns a queue.Queue
-            while True:
-                msg = messages.get()  # blocks until a new message arrives
-                yield msg
-
-        return flask.Response(stream(), mimetype='text/event-stream')
 

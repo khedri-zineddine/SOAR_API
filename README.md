@@ -52,3 +52,30 @@ refresh token:1//03nTOlF4aA-MaCgYIARAAGAMSNwF-L9IrUywc39EOSbXD1cEEj2FTnXgegz2G8_
 
 
 --client_id=750511791638-sr3n0i3q291ifgfhclt1l99pcr7aifmu.apps.googleusercontent.com --client_secret=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
+
+
+
+# Phishing email attack
+https://app.sendinblue.com/marketing-campaign/list
+
+SMTP serveur : smtp-relay.sendinblue.com 
+Port : 587
+Identifier : nacerokhed@gmail.com
+password : Login to https://app.sendinblue.com/marketing-campaign/list using nacerokhed@gmail.com 
+and check link https://account.sendinblue.com/advanced/api to get password
+
+1 - Lunch kali-linux VM and switch to root mode : "sudo su -"
+2 - setoolkit
+3 - choose social engineering attack : choose "1"
+4 - Spear-Phishing Attack Vectors : choose 1
+5 - E-Mail Attack Single Email Address
+6 - send email to :hz_khedri@esi.dz
+7 - Use your own server or open relay
+8 - put the email you want : for example admin@org.com
+9 - Choose the name that will apear to victim : ADMIN
+10 - usernma of open-relay : nacerokhed@gmail.com
+11- password Login to https://app.sendinblue.com/marketing-campaign/list using nacerokhed@gmail.com 
+and check link https://account.sendinblue.com/advanced/api to get password
+12 - smtp-relay.sendinblue.com 
+13 - 587
+14 -  Flag this message/s as high priority? [yes|no]:yes

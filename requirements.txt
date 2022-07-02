@@ -52,3 +52,5 @@ Werkzeug==2.1.2
 wrapt==1.14.1
 wsproto==1.1.0
 zipp==3.8.0
+flask_sse==1.0.0
+APScheduler==3.9.1

@@ -10,6 +10,7 @@ from datetime import datetime as dt, timedelta
 from utils.MessageAnnouncer import MessageAnnouncer
 from utils.helpers import format_sse
 from models.DBManager import DBManager
+from flask_sse import sse
 
 HITS = 100
 TIME_TO_NEXT_EVENT = 5
@@ -79,10 +80,10 @@ class RansomwareAnalyzer(AppBase):
                     ransomware_data['attack'] = attack_data
                     new_event = json.dumps(ransomware_data)
                     self.redis_conn.set("ransomware",new_event)
-
                     str_data = json.dumps(final_data, default=default)
-                    msg = format_sse(data=str_data)
-                    self.announcer.announce(msg=msg)
+                    #msg = format_sse(data=str_data)
+                    #self.announcer.announce(msg=msg)
+                    sse.publish(str_data, type='ransomware')
                     DBManager.ransomware_col.insert_one(final_data)
                     with open(f'Ransomware/{agent["ip"]}.json','w') as f:
                         f.write(str_data)

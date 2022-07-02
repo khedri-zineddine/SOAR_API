@@ -76,7 +76,7 @@ class Email(AppBase):
         data = json.loads(self.redis_conn.get(workflow_id))
         return {"data":data}
     
-    @route('imap',methods=['POST','OPTIONS'])
+    @route('imap',methods=['POST'])
     def get_emails_imap(self):
         print("--------- start phishing email -------------------")
         print(request.method)
@@ -261,6 +261,7 @@ class Email(AppBase):
                     #output_dict["email_uid"] = email_id[0]
                 if upload_attachments:
                     self.logger.info("Uploading email ATTACHMENTS to store")
+                    
                     if not output_dict.get('attachment',None):
                         output_dict["attachment"] = []
                         output_dict['attachements_path'] = []
@@ -308,9 +309,7 @@ class Email(AppBase):
             data_to_return["_id"] = str(data_to_return["_id"])
             return data_to_return
         #email.logout()
-        response = flask.jsonify({'some': 'data'})
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        return response
+        return data_to_return
         
 
     def is_phishing_mail(self,data):
