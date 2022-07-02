@@ -1,14 +1,24 @@
 from pymongo import MongoClient
 from pprint import pprint
 
-MONGODB_URL = "mongodb://localhost:27017"
+MONGODB_URL = "mongodb+srv://zinokhedri:123456789zino@cluster0.qjeed.mongodb.net/?retryWrites=true&w=majority"
+
+
 class DBManager:
     client = MongoClient(MONGODB_URL)
-    db=client.soar_db
+    db = client.soar_db
     ransomware_col = db.RansomwareEvent
     loginanomaly_col = db.LoginAnomalyEvent
     ssh_col = db.SSHEvent
     email_col = db.EmailEvent
+
+    cdp_dos = db.cdp_dos
+    stp_dos = db.stp_dos
+    dhcp_starvation = db.dhcp_starvation
+    stp_root = db.stp_root
+    hsrp_attack = db.hsrp_attack
+    periodic_ping = db.periodic_ping
+    dhcp_spoof = db.dhcp_spoof
 
     @classmethod
     def check_status(cls):
@@ -17,4 +27,4 @@ class DBManager:
 
     def all(self):
         records = self.db.soar.find({})
-        print('lenght of document is here ------- ',len(list(records)))
+        print("lenght of document is here ------- ", len(list(records)))

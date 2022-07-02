@@ -1,4 +1,4 @@
-#from flask import Flask
+# from flask import Flask
 from email_app.email import Email
 from urlscanio.urlscan_analyzer import UrlscanAnalyzer
 from VirusTotal.virustotal import VirusTotalAnalyzer
@@ -8,10 +8,19 @@ from Ransomware.ransomware_attaque import RansomwareAnalyzer
 from SSHBruteForce.ssh_burteforce import SSHBruteForceAnalyzer
 from views.events import EventClass
 from flask_cors import CORS
-from quart import Quart
 from flask import Flask
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_sse import sse
+
+# attaque reseaux
+
+from CDP_DOS.cdp_dos import CDP_DOS
+from STP_DOS.stp_dos import STP_DOS
+from DHCP_Starvation.DHCP_Starvation import DHCP_Starvation
+from DHCP_Spoof.dhcp_spoof import DHCP_Spoof
+from STP_Root.stp_root import STP_ROOT
+from HSRP_Attack.hsrp_attack import HSRP_Attack
+from PeriodicPing.PeriodicPing import PeriodicPing
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -28,5 +37,5 @@ SSHBruteForceAnalyzer.register(app,route_base='/ssh')
 EventClass.register(app,route_base='/events')
 app.register_blueprint(sse,url_prefix='/stream')
 
-if __name__=='__main__':
+if __name__ == "__main__":
     app.run(debug=True, threaded=True)

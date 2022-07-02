@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>DHCP Starvation Rapport de la réponse</title>
+
+		<style>
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			/** RTL **/
+			.invoice-box.rtl {
+				direction: rtl;
+				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			}
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="invoice-box">
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td class="title">
+									<img src="data:image/png;base64,{{ imgvarlogo }}" style="width: 100%; max-width: 300px" />
+
+								</td>
+
+								<td>
+									Rapport Numéro : {{ idRapport }}<br />
+									Date de création : <span id='day'></span> <span id='month'></span> <span id='year'></span><br />
+									Heur de création : <span id='time'></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h2> <u>Object :</u> Rapport de l'attaque DHCP Starvation</h2>
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Centre Opérationnel De Sécurité (SOC)<br />
+									ICT-Towers<br />
+									Cité Boushaki “A” Lot N° 25, Bab Ezzouar
+								</td>
+
+								<td>
+									Résponsable: Abderrazek Bachir Bouiadjra<br />
+									Abdeldjalil BENAOUDA<br />
+									abdeldjalil.benaouda.99@gmail.com
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Description de l'attaque</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>DHCP starvation est une attaque numérique malveillante qui cible les serveurs DHCP. Lors d'une attaque DHCP, un acteur hostile inonde un serveur DHCP de faux paquets DISCOVER jusqu'à ce que le serveur DHCP épuise son approvisionnement en adresses IP. L'attaquant commence par changer son adresse MAC et pour chaque adresse MAC générée, il envoie une requête au serveur DHCP jusqu'à obtenir toutes les adresses du pool.
+					</td>
+					<td></td>
+				</tr>
+
+				<tr class="heading">
+					<td>Résultat de l'attaque sur le fonctionnement de l'infrastructure</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>Une fois que cela se produit et lorsqu'un client légitime essaie d'obtenir une adresse DHCP du pool, le serveur DHCP répond négativement car le pool est vide. Cela entraînera un déni de service, ou même l'attaquant fournir une connexion DHCP alternative qui mène à une attaque Man-in-the-Middle (MITM) .</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="heading">
+					<td>Réponse automatique contre l'attaque</td>
+
+					<td></td>
+				</tr>
+
+				<tr class="details">
+					<td>L'attaquant utilise une nouvelle adresse MAC pour demander un nouveau bail DHCP. En utilisant Port-Security, le nombre d'adresses MAC sur le port peut être restreint, ainsi, il ne pourra pas louer plus d'adresses IP que d'adresses MAC autorisées sur le port, ou il est possible d'utiliser la technologie DHCP Snooping, ou également il est possible d'utiliser une Access Control List pour bloquer les traffic DHCP qui vient d'un serveur DHCP non autorisés, Ainsi pour ce cas vous avez la réponse automatique avec la description suivante : <br> <strong> {{ variable }} </strong></td>
+					<td></td>
+				</tr>
+
+
+				<tr class="item last">
+					<td>Bab Ezzouar, le <span id='daysign'></span> <span id='monthsign'></span> <span id='yearsign'></span></td>
+
+					<td>Signature</td>
+				</tr>
+
+				<tr class="total">
+					<td></td>
+
+					<td>
+						<img src="data:image/png;base64,{{ imgvarsign }}" style="width: 100%; max-width: 300px" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
+
+<script>
+	var time = new Date().toLocaleTimeString(); 
+	document.getElementById('time').innerHTML=time;
+
+	var day = new Date().getDate(); 
+	document.getElementById('day').innerHTML=day;
+	const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+  "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+];
+	var month = new Date().getMonth(); 
+	var monthf=monthNames[month]
+	document.getElementById('month').innerHTML=monthf;
+	var year = new Date().getFullYear(); 
+	document.getElementById('year').innerHTML=year;
+
+	var daysign = new Date().getDate(); 
+	document.getElementById('daysign').innerHTML=daysign;
+	var monthsign = new Date().getMonth(); 
+	var monthf=monthNames[monthsign]
+	document.getElementById('monthsign').innerHTML=monthf;
+	var yearsign = new Date().getFullYear(); 
+	document.getElementById('yearsign').innerHTML=yearsign;
+
+</script>

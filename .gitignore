@@ -1,1 +1,4 @@
 soarenv
+__pycache__
+**/__pycache__/
+storage
