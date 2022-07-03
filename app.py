@@ -45,6 +45,8 @@ STP_ROOT.register(app, route_base="/stp-root")
 HSRP_Attack.register(app, route_base="/hsrp-attack")
 PeriodicPing.register(app, route_base="/periodic-ping")
 
+sseCors = CORS(sse, resources={r"*": {"origins": "*"}})
+
 app.register_blueprint(sse, url_prefix="/stream")
 
 if __name__ == "__main__":
