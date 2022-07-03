@@ -8,7 +8,7 @@ from appUtils import AppUtils
 
 class STP_DOS(AppBase):
     @route("attaque", methods=["GET", "POST"])
-    def attaque():
+    def attaque(self):
         content = request.json
         post_data = content
         result = DBManager.stp_dos.insert_one(post_data)
@@ -16,7 +16,7 @@ class STP_DOS(AppBase):
         return flask.Response({"Attaque": "True"})
 
     @route("response", methods=["GET", "POST"])
-    def response():
+    def response(self):
         content = request.json
         data_html = content["Response"]
         post_data = content
@@ -29,6 +29,6 @@ class STP_DOS(AppBase):
         return flask.Response({"Response": "True"})
 
     @route("list", methods=["GET", "POST"])
-    def list():
+    def list(self):
         x = DBManager.stp_dos.find()
         return AppUtils.jsonEncode([todo for todo in x])

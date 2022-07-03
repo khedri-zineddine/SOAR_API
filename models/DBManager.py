@@ -19,6 +19,7 @@ class DBManager:
     hsrp_attack = db.hsrp_attack
     periodic_ping = db.periodic_ping
     dhcp_spoof = db.dhcp_spoof
+    debug_all = db.debug_all
 
     @classmethod
     def check_status(cls):

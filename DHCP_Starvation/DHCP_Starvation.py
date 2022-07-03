@@ -8,7 +8,7 @@ from appUtils import AppUtils
 
 class DHCP_Starvation(AppBase):
     @route("attaque", methods=["GET", "POST"])
-    def attaque():
+    def attaque(self):
         content = request.json
         post_data = content
         result = DBManager.dhcp_starvation.insert_one(post_data)
@@ -16,7 +16,7 @@ class DHCP_Starvation(AppBase):
         return flask.Response({"Attaque": "True"})
 
     @route("response", methods=["GET", "POST"])
-    def response():
+    def response(self):
         content = request.json
         data_html = content["Response"]
         post_data = content
@@ -29,6 +29,6 @@ class DHCP_Starvation(AppBase):
         return flask.Response({"Response": "True"})
 
     @route("list", methods=["GET", "POST"])
-    def list():
+    def list(self):
         x = DBManager.dhcp_starvation.find()
         return AppUtils.jsonEncode([todo for todo in x])

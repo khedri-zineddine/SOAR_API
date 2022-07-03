@@ -8,11 +8,11 @@ from appUtils import AppUtils
 
 class DebugAll(AppBase):
     @route("response", methods=["GET", "POST"])
-    def response():
+    def response(self):
         content = request.json
         data_html = content["Response"]
         post_data = content
-        result = DBManager.cdp_dos.insert_one(post_data)
+        result = DBManager.debug_all.insert_one(post_data)
         data_html = str(data_html)
         id_rapport = result.inserted_id
         msgtitle = "l'Execution de la commande d'epuisement du CPU 'Debug ALL' qui necessite une investigation humaine"
@@ -21,6 +21,6 @@ class DebugAll(AppBase):
         return flask.Response({"Response": "True"})
 
     @route("list", methods=["GET", "POST"])
-    def list():
-        x = DBManager.cdp_dos.find()
+    def list(self):
+        x = DBManager.debug_all.find()
         return AppUtils.jsonEncode([todo for todo in x])

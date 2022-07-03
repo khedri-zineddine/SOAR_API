@@ -7,8 +7,11 @@ from appUtils import AppUtils
 
 
 class CDP_DOS(AppBase):
+    def __init__(self, REDIS_URL="127.0.0.1", REDIS_PORT="6379", DB_INDEX=1):
+        super().__init__(REDIS_URL, REDIS_PORT, DB_INDEX)
+
     @route("attaque", methods=["GET", "POST"])
-    def attaque():
+    def attaque(self):
         content = request.json
         post_data = content
         result = DBManager.cdp_dos.insert_one(post_data)
@@ -16,7 +19,7 @@ class CDP_DOS(AppBase):
         return flask.Response({"Attaque": "True"})
 
     @route("response", methods=["GET", "POST"])
-    def response():
+    def response(self):
         content = request.json
         data_html = content["Response"]
         post_data = content
@@ -29,6 +32,6 @@ class CDP_DOS(AppBase):
         return flask.Response({"Response": "True"})
 
     @route("list", methods=["GET", "POST"])
-    def list():
+    def list(self):
         x = DBManager.cdp_dos.find()
         return AppUtils.jsonEncode([todo for todo in x])
