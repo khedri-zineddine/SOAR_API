@@ -23,7 +23,8 @@ class DHCP_Starvation(AppBase):
         result = DBManager.dhcp_starvation.insert_one(post_data)
         data_html = str(data_html)
         id_rapport = result.inserted_id
-        AppUtils.generateRapportPdf("DHCP_Starvation.html", "DHCP_Starvation", data_html, id_rapport)
+        msgtitle = "l'attaque DHCP Starvation"
+        AppUtils.generateRapportPdf("DHCP_Starvation.html", "DHCP_Starvation", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
 
