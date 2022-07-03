@@ -23,7 +23,8 @@ class STP_DOS(AppBase):
         result = DBManager.stp_dos.insert_one(post_data)
         data_html = str(data_html)
         id_rapport = result.inserted_id
-        AppUtils.generateRapportPdf("STP_Dos.html", "STP_Dos", data_html, id_rapport)
+        msgtitle = "l'attaque par déni de service du protocole Spanning Tree"
+        AppUtils.generateRapportPdf("STP_Dos.html", "STP_Dos", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
 

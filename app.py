@@ -20,6 +20,7 @@ from DHCP_Spoof.dhcp_spoof import DHCP_Spoof
 from STP_Root.stp_root import STP_ROOT
 from HSRP_Attack.hsrp_attack import HSRP_Attack
 from PeriodicPing.PeriodicPing import PeriodicPing
+from DebugAll.DebugAll import DebugAll
 
 app = Flask(__name__)
 app.config["CORS_HEADERS"] = "Content-Type"
@@ -44,6 +45,7 @@ DHCP_Spoof.register(app, route_base="/dhcp-spoof")
 STP_ROOT.register(app, route_base="/stp-root")
 HSRP_Attack.register(app, route_base="/hsrp-attack")
 PeriodicPing.register(app, route_base="/periodic-ping")
+DebugAll.register(app, route_base="/debug-all")
 
 sseCors = CORS(sse, resources={r"*": {"origins": "*"}})
 

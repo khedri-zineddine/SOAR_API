@@ -23,7 +23,8 @@ class CDP_DOS(AppBase):
         result = DBManager.cdp_dos.insert_one(post_data)
         data_html = str(data_html)
         id_rapport = result.inserted_id
-        AppUtils.generateRapportPdf("CDP.html", "CDP_DOS", data_html, id_rapport)
+        msgtitle = "l'attaque par déni de service du protocole CDP"
+        AppUtils.generateRapportPdf("CDP.html", "CDP_DOS", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
 

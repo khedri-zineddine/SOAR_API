@@ -23,7 +23,8 @@ class DHCP_Spoof(AppBase):
         result = DBManager.dhcp_spoof.insert_one(post_data)
         data_html = str(data_html)
         id_rapport = result.inserted_id
-        AppUtils.generateRapportPdf("DHCP_Spoofing.html", "DHCP_Spoofing", data_html, id_rapport)
+        msgtitle = "l'attaque DHCP Spoofing"
+        AppUtils.generateRapportPdf("DHCP_Spoofing.html", "DHCP_Spoofing", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
 

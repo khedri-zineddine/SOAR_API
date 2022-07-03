@@ -23,7 +23,8 @@ class PeriodicPing(AppBase):
         result = DBManager.periodic_ping.insert_one(post_data)
         data_html = str(data_html)
         id_rapport = result.inserted_id
-        AppUtils.generateRapportPdf("ping.html", "PeriodicPing", data_html, id_rapport)
+        msgtitle = "de l'Echec de connectivite au serveur SIEM qui necessite une investigation humaine"
+        AppUtils.generateRapportPdf("ping.html", "PeriodicPing", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
 

@@ -28,16 +28,15 @@ class AppUtils:
     def jsonEncode(data):
         return JSONEncoder().encode(data)
 
-    def sendAttaqueEmail(rapportFile, fileName):
+    def sendAttaqueEmail(rapportFile, fileName, messagetitle):
         try:
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
             server.login(EMAIL_SOURCE_USERNAME, EMAIL_SOURCE_PASSWORD)
             # Craft message (obj)
             msg = MIMEMultipart()
-
-            message = f"Bonjour Madame/Monsieur,\n \nVous trouverez ci-joint le rapport détaillé de l'attaque par déni de service du protocole Spanning Tree. \n \nBien cordialement.\n \n --\nSOAR Plateforme \n \n \nEnvoyer depuis : {gethostname()}"
-            msg["Subject"] = "Rapport de l'attaque par déni de service du protocole Spanning Tree"
+            message = f"Bonjour Madame/Monsieur,\n \nVous trouverez ci-joint le rapport détaillé de" +messagetitle+ ".\n \nBien cordialement.\n \n --\nSOAR Plateforme \n \n \nEnvoyer depuis : {gethostname()}"
+            msg["Subject"] = "Rapport de" + messagetitle
             msg["From"] = EMAIL_SOURCE_PASSWORD
             msg["To"] = ANALYST_EMAIL
             # Insert the text to the msg going by e-mail
@@ -54,7 +53,7 @@ class AppUtils:
         except Exception as e:
             print("No internet connection {}".format(e))
 
-    def generateRapportPdf(self, templateName, attaqueNmae, data, idRapport):
+    def generateRapportPdf(self, templateName, attaqueNmae, data, idRapport, messagetitle):
         with open("templates/website/images/pngegg.png", "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read())
             encoded_string = encoded_string.decode("utf-8")
@@ -82,4 +81,4 @@ class AppUtils:
         pdfname = attaqueNmae + count + ".pdf"
         pdfnamepath = filePath + "/" + pdfname
         pdfkit.from_string(html_sample, output_path=pdfnamepath)
-        self.sendAttaqueEmail(pdfnamepath, pdfname)
+        self.sendAttaqueEmail(pdfnamepath, pdfname, messagetitle)
