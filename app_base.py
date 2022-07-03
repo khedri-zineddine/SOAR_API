@@ -20,6 +20,7 @@ class AppBase(FlaskView):
         # self.redis_conn = redis.Redis(REDIS_HEROKU_URL, REDIS_HEROKU_PORT, DB_INDEX)
         # self.redis_conn = redis.Redis(host=REDIS_HEROKU_URL, port=REDIS_HEROKU_PORT, password=REDIS_HEROKU_PASSORD, db=DB_INDEX)
         url = urlparse(REDIS_HEROKU_URI)
+        print(url)
         self.redis_conn = redis.Redis(
             host=url.hostname, port=url.port, username=url.username, password=url.password, ssl=True, ssl_cert_reqs=None
         )
