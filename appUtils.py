@@ -39,7 +39,8 @@ class AppUtils:
             message = (
                 f"Bonjour Madame/Monsieur,\n \nVous trouverez ci-joint le rapport détaillé de"
                 + messagetitle
-                + ".\n \nBien cordialement.\n \n --\nSOAR Plateforme \n \n \nEnvoyer depuis : {gethostname()}"
+                + ".\n \nBien cordialement.\n \n --\nSOAR Plateforme \n \n \nEnvoyer depuis : "
+                + gethostname()
             )
             msg["Subject"] = "Rapport de" + messagetitle
             msg["From"] = EMAIL_SOURCE_PASSWORD
