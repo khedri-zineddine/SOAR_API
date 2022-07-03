@@ -4,6 +4,7 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from socket import gethostname
 from flask import Flask, render_template
+import pathlib
 import base64
 import os, os.path
 import errno
@@ -25,17 +26,21 @@ class JSONEncoder(json.JSONEncoder):
 
 
 class AppUtils:
-    def jsonEncode(data):
+    def jsonEncode(self, data):
         return JSONEncoder().encode(data)
 
-    def sendAttaqueEmail(rapportFile, fileName, messagetitle):
+    def sendAttaqueEmail(self, rapportFile, fileName, messagetitle):
         try:
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
             server.login(EMAIL_SOURCE_USERNAME, EMAIL_SOURCE_PASSWORD)
             # Craft message (obj)
             msg = MIMEMultipart()
-            message = f"Bonjour Madame/Monsieur,\n \nVous trouverez ci-joint le rapport détaillé de" +messagetitle+ ".\n \nBien cordialement.\n \n --\nSOAR Plateforme \n \n \nEnvoyer depuis : {gethostname()}"
+            message = (
+                f"Bonjour Madame/Monsieur,\n \nVous trouverez ci-joint le rapport détaillé de"
+                + messagetitle
+                + ".\n \nBien cordialement.\n \n --\nSOAR Plateforme \n \n \nEnvoyer depuis : {gethostname()}"
+            )
             msg["Subject"] = "Rapport de" + messagetitle
             msg["From"] = EMAIL_SOURCE_PASSWORD
             msg["To"] = ANALYST_EMAIL
@@ -67,7 +72,8 @@ class AppUtils:
             imgvarlogo=encoded_string_logo,
             idRapport=idRapport,
         )
-        filePath = os.path.dirname + "/storage/" + attaqueNmae
+
+        filePath = str(pathlib.Path().resolve()) + "/storage/" + attaqueNmae
         if not os.path.exists(filePath):
             try:
                 os.makedirs(filePath)

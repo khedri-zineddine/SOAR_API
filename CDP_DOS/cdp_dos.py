@@ -3,7 +3,6 @@ from flask_classful import route
 from flask import request
 from app_base import AppBase
 from models.DBManager import DBManager
-from appUtils import AppUtils
 
 
 class CDP_DOS(AppBase):
@@ -27,11 +26,11 @@ class CDP_DOS(AppBase):
         data_html = str(data_html)
         id_rapport = result.inserted_id
         msgtitle = "l'attaque par déni de service du protocole CDP"
-        AppUtils.generateRapportPdf("CDP.html", "CDP_DOS", data_html, id_rapport, msgtitle)
+        self.app_utils.generateRapportPdf("CDP.html", "CDP_DOS", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
 
     @route("list", methods=["GET", "POST"])
     def list(self):
         x = DBManager.cdp_dos.find()
-        return AppUtils.jsonEncode([todo for todo in x])
+        return self.app_utils.jsonEncode([todo for todo in x])

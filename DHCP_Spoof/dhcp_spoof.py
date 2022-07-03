@@ -3,7 +3,6 @@ from flask_classful import route
 from flask import request
 from app_base import AppBase
 from models.DBManager import DBManager
-from appUtils import AppUtils
 
 
 class DHCP_Spoof(AppBase):
@@ -24,11 +23,11 @@ class DHCP_Spoof(AppBase):
         data_html = str(data_html)
         id_rapport = result.inserted_id
         msgtitle = "l'attaque DHCP Spoofing"
-        AppUtils.generateRapportPdf("DHCP_Spoofing.html", "DHCP_Spoofing", data_html, id_rapport, msgtitle)
+        self.app_utils.generateRapportPdf("DHCP_Spoofing.html", "DHCP_Spoofing", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
 
     @route("list", methods=["GET", "POST"])
     def list(self):
         x = DBManager.dhcp_spoof.find()
-        return AppUtils.jsonEncode([todo for todo in x])
+        return self.app_utils.jsonEncode([todo for todo in x])
