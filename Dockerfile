@@ -14,7 +14,7 @@ ARG port
 COPY . /soar-api
 WORKDIR /soar-api
 RUN pip install -r requirements.txt
-RUN apt-get install wkhtmltopdf
+RUN apt-get install -y wkhtmltopdf
 
 ENV PORT=$port
 EXPOSE $PORT
