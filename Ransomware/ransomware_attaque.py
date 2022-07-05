@@ -1,4 +1,3 @@
-from site import check_enableusersite
 from app_base import AppBase
 from flask_classful import route
 import flask
@@ -7,9 +6,7 @@ import json
 from utils.helpers import default
 from datetime import datetime as dt, timedelta
 from utils.MessageAnnouncer import MessageAnnouncer
-from utils.helpers import format_sse
 from models.DBManager import DBManager
-from flask_sse import sse
 from datetime import datetime
 
 HITS = 100
@@ -87,7 +84,7 @@ class RansomwareAnalyzer(AppBase):
                     str_data = json.dumps(final_data, default=default)
                     # msg = format_sse(data=str_data)
                     # self.announcer.announce(msg=msg)
-                    sse.publish(str_data, type="ransomware")
+                    self.app_utils.publishSSEMessage(final_data, "ransomware")
                     DBManager.ransomware_col.insert_one(final_data)
                     with open(f'Ransomware/{agent["ip"]}.json', "w") as f:
                         f.write(str_data)

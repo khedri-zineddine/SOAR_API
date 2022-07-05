@@ -1,5 +1,3 @@
-from genericpath import exists
-from site import check_enableusersite
 import flask
 from app_base import AppBase
 from flask_classful import route
@@ -8,9 +6,7 @@ import json
 from utils.helpers import default
 from datetime import datetime as dt, timedelta
 from utils.MessageAnnouncer import MessageAnnouncer
-from utils.helpers import format_sse
 from models.DBManager import DBManager
-from flask_sse import sse
 from datetime import datetime
 
 RULE_ID = "5760"
@@ -80,7 +76,7 @@ class SSHBruteForceAnalyzer(AppBase):
                 new_event = json.dumps(ssh_data)
                 self.redis_conn.set("ssh", new_event)
                 str_data = json.dumps(final_data, default=default)
-                sse.publish(str_data, type="ssh")
+                self.app_utils.publishSSEMessage(final_data, "ssh")
                 # msg = format_sse(data=str_data)
                 # self.announcer.announce(msg=msg)
                 DBManager.ssh_col.insert_one(final_data)

@@ -7,12 +7,15 @@ from datetime import datetime
 
 
 class DHCP_Spoof(AppBase):
+    channelSSE = "dhcp_spoof"
+
     @route("attaque", methods=["GET", "POST"])
     def attaque(self):
         content = request.json
         post_data = content
-        post_data["alerted_at"] = datetime.now()
+        post_data["alerted_at"] = self.app_utils.currentDate()
         result = DBManager.dhcp_spoof.insert_one(post_data)
+        self.app_utils.publishSSEMessage(post_data, self.channelSSE)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Attaque": "True"})
 
@@ -21,8 +24,9 @@ class DHCP_Spoof(AppBase):
         content = request.json
         data_html = content["Response"]
         post_data = content
-        post_data["responsed_at"] = datetime.now()
+        post_data["responsed_at"] = self.app_utils.currentDate()
         result = DBManager.dhcp_spoof.insert_one(post_data)
+        self.app_utils.publishSSEMessage(post_data, self.channelSSE)
         data_html = str(data_html)
         id_rapport = result.inserted_id
         msgtitle = "l'attaque DHCP Spoofing"

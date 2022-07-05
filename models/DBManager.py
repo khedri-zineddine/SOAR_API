@@ -21,6 +21,20 @@ class DBManager:
     dhcp_spoof = db.dhcp_spoof
     debug_all = db.debug_all
 
+    collection_names = [
+        "ransomware_col",
+        "loginanomaly_col",
+        "ssh_col",
+        "email_col",
+        "cdp_dos",
+        "stp_dos",
+        "dhcp_starvation",
+        "stp_root",
+        "hsrp_attack",
+        "periodic_ping",
+        "dhcp_spoof",
+    ]
+
     @classmethod
     def check_status(cls):
         serverStatusResult = cls.db.command("serverStatus")

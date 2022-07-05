@@ -1,25 +1,18 @@
-from re import M
-import flask
 from flask_classful import route
 from flask import request
 import json
 import socket
 import eml_parser
 import imaplib
-from flask_cors import cross_origin
 from glom import glom
 import base64
-import logging
 import datetime
-import redis
 from app_base import AppBase
 from werkzeug.utils import secure_filename
 import os
 from models.DBManager import DBManager
 from urlscanio.urlscan_analyzer import UrlscanAnalyzer
 from VirusTotal.virustotal import VirusTotalAnalyzer
-from email_app.email_connection import EmailConnection
-from datetime import datetime
 
 MEDIA_PATH = "media/emails/"
 USERNAME = "itachibatna@gmail.com"
@@ -304,8 +297,9 @@ class Email(AppBase):
                 "img": "email.png",
                 "details": final_data,
             }
-            data_to_return["alerted_at"] = datetime.now()
+            data_to_return["alerted_at"] = self.app_utils.currentDate()
             DBManager.email_col.insert_one(data_to_return)
+            self.app_utils.publishSSEMessage(data_to_return, "emailPhishing")
             data_to_return["_id"] = str(data_to_return["_id"])
             return data_to_return
         # email.logout()

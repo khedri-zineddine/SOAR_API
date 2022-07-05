@@ -1,3 +1,4 @@
+from datetime import datetime
 from bson import ObjectId
 import smtplib
 from email.mime.application import MIMEApplication
@@ -11,6 +12,8 @@ import errno
 from email.mime.text import MIMEText
 import pdfkit
 import json
+from utils.helpers import default
+from flask_sse import sse
 
 EMAIL_SOURCE_USERNAME = "hz_khedri@esi.dz"
 EMAIL_SOURCE_PASSWORD = "guocyhrsrkaglxvo"
@@ -26,6 +29,13 @@ class JSONEncoder(json.JSONEncoder):
 
 
 class AppUtils:
+    def currentDate(self):
+        return datetime.now()
+
+    def publishSSEMessage(self, data, channel):
+        str_data = json.dumps(data, default=default)
+        sse.publish(str_data, type=channel)
+
     def jsonEncode(self, data):
         return JSONEncoder().encode(data)
 

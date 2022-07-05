@@ -1,17 +1,12 @@
 from app_base import AppBase
 from flask_classful import route
 from flask import request
-import flask
 import json
 from quart import websocket
 from utils.helpers import default
 
 from IPinfo.ipinfo_analyzer import IPinfoAnalyzer
-from utils.helpers import format_sse
-from utils.MessageAnnouncer import MessageAnnouncer
 from models.DBManager import DBManager
-from flask_sse import sse
-from datetime import datetime
 
 
 class LoginAnomaly(AppBase):
@@ -59,7 +54,7 @@ class LoginAnomaly(AppBase):
                 "result": result,
                 "note": "User from anoher city, region or country",
                 "anomaly": True,
-                "alerted_at": datetime.now(),
+                "alerted_at": self.app_utils.currentDate(),
                 "time": time,
                 "agent": agent,
             }
@@ -78,7 +73,7 @@ class LoginAnomaly(AppBase):
         # send msg to listner
         if final_result["anomaly"]:
             print("-- i will announce the attack -------")
-            sse.publish(str_data, type="anomalies")
+            self.app_utils.publishSSEMessage(final_result, "anomalies")
             DBManager.loginanomaly_col.insert_one(final_result)
             final_result["_id"] = str(final_result["_id"])
 

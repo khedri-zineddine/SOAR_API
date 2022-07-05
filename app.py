@@ -1,5 +1,6 @@
 # from flask import Flask
 from email_app.email import Email
+from mock_database.autoMock import AutoMockClass
 from urlscanio.urlscan_analyzer import UrlscanAnalyzer
 from VirusTotal.virustotal import VirusTotalAnalyzer
 from LoginAnomalies.login_anomalies import LoginAnomaly
@@ -49,6 +50,7 @@ STP_ROOT.register(app, route_base="/stp-root")
 HSRP_Attack.register(app, route_base="/hsrp-attack")
 PeriodicPing.register(app, route_base="/periodic-ping")
 DebugAll.register(app, route_base="/debug-all")
+AutoMockClass.register(app, route_base="/")
 
 # dashboard
 AnalyticsClass.register(app, route_base="/analytics")
