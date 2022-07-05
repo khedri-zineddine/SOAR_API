@@ -29,7 +29,7 @@ class STP_ROOT(AppBase):
         self.app_utils.publishSSEMessage(post_data, self.channelSSE)
         data_html = str(data_html)
         id_rapport = result.inserted_id
-        msgtitle = "de manipulation de la racine du protocole Spanning Tree"
+        msgtitle = "manipulation de la racine du protocole Spanning Tree"
         self.app_utils.generateRapportPdf("STP_Root.html", "STP_Root", data_html, id_rapport, msgtitle)
         print("One post: {0}".format(result.inserted_id))
         return flask.Response({"Response": "True"})
