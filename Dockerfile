@@ -1,6 +1,6 @@
 FROM python:3.8
 
-ARG port
+#ARG port
 
 #RUN apt-get update
 
@@ -18,8 +18,7 @@ WORKDIR /soar-api
 RUN pip install -r requirements.txt
 
 
-ENV PORT=$port
-EXPOSE $PORT
+#ENV PORT=$port
+#EXPOSE $PORT
 
-#CMD (redis-server &) && redis-cli ping
-CMD flask run --host=0.0.0.0 --port=$PORT
+#CMD flask run --host=0.0.0.0 --port=$PORT
