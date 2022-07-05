@@ -29,7 +29,7 @@ from DebugAll.DebugAll import DebugAll
 
 app = Flask(__name__)
 app.config["CORS_HEADERS"] = "Content-Type"
-app.config["REDIS_URL"] = "redis://127.0.0.1"
+app.config["REDIS_URL"] = "redis://:eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81@redis_service:6379"
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 Email.register(app, route_base="/email")
