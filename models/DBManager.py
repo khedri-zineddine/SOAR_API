@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from pprint import pprint
 
-MONGODB_URL = "mongodb+srv://zinokhedri:123456789zino@cluster0.qjeed.mongodb.net/?retryWrites=true&w=majority"
+MONGODB_URL = "mongodb://soar:soar-password@mongo:27017/"
 
 
 class DBManager:
