@@ -15,8 +15,8 @@ import json
 from utils.helpers import default
 from flask_sse import sse
 
-EMAIL_SOURCE_USERNAME = "hz_khedri@esi.dz"
-EMAIL_SOURCE_PASSWORD = "guocyhrsrkaglxvo"
+EMAIL_SOURCE_USERNAME = "abdeldjalil.abdeldjalil.26@gmail.com"
+EMAIL_SOURCE_PASSWORD = "unmjvbdwcgdajfbm"
 
 ANALYST_EMAIL = "abdeldjalil.benaouda.99@gmail.com"
 
